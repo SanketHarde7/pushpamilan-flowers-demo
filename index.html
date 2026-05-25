@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pushpmilan Flowers — Nashik's Finest Florist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green-deep:#0e1f12;
+  --green-mid:#1a3320;
+  --green-light:#2d5438;
+  --gold:#c8a060;
+  --gold-light:#e8c98a;
+  --blush:#f7ede8;
+  --cream:#faf6f1;
+  --white:#ffffff;
+  --text-dark:#0e1f12;
+  --text-mid:#3a4a3d;
+  --text-light:#7a8c7e;
+  --font-display:'Cormorant Garamond',serif;
+  --font-body:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--cream);color:var(--text-dark);overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1.2rem 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background 0.4s,backdrop-filter 0.4s,box-shadow 0.4s;
+}
+nav.scrolled{
+  background:rgba(14,31,18,0.92);
+  backdrop-filter:blur(12px);
+  box-shadow:0 1px 0 rgba(200,160,96,0.15);
+}
+.nav-logo{
+  font-family:var(--font-display);
+  font-size:1.45rem;font-weight:600;
+  color:var(--white);letter-spacing:0.02em;
+  text-decoration:none;
+}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  color:rgba(255,255,255,0.75);font-size:0.88rem;
+  letter-spacing:0.06em;text-transform:uppercase;
+  text-decoration:none;font-weight:400;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{
+  background:var(--gold);color:var(--green-deep);
+  padding:0.55rem 1.4rem;border-radius:2rem;
+  font-size:0.85rem;font-weight:500;letter-spacing:0.04em;
+  text-decoration:none;transition:background 0.2s,transform 0.15s;
+  white-space:nowrap;
+}
+.nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(160deg, #0e1f12 0%, #1a3320 45%, #0a1a0d 100%);
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  padding:7rem 5% 4rem;
+}
+.hero-petals{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+.petal{
+  position:absolute;
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gold);opacity:0;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  0%{transform:translateY(-20px) rotate(0deg);opacity:0}
+  10%{opacity:0.4}
+  90%{opacity:0.15}
+  100%{transform:translateY(110vh) rotate(720deg);opacity:0}
+}
+.hero-inner{max-width:680px;position:relative;z-index:1}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(200,160,96,0.12);border:1px solid rgba(200,160,96,0.3);
+  color:var(--gold);font-size:0.8rem;letter-spacing:0.1em;
+  text-transform:uppercase;padding:0.4rem 1rem;border-radius:2rem;
+  margin-bottom:1.8rem;
+  animation:fadeUp 0.8s ease both;
+}
+.star{color:var(--gold);font-size:0.9rem}
+.hero-title{
+  font-family:var(--font-display);
+  font-size:clamp(3rem,7vw,5.5rem);
+  line-height:1.08;font-weight:600;
+  color:var(--white);margin-bottom:1rem;
+  animation:fadeUp 0.9s 0.1s ease both;
+}
+.hero-title em{
+  font-style:italic;color:var(--gold);
+  display:block;font-weight:400;
+}
+.hero-sub{
+  color:rgba(255,255,255,0.6);font-size:1.05rem;
+  line-height:1.7;max-width:480px;margin-bottom:2.5rem;
+  font-weight:300;
+  animation:fadeUp 0.9s 0.2s ease both;
+}
+.hero-btns{
+  display:flex;flex-wrap:wrap;gap:1rem;
+  animation:fadeUp 0.9s 0.3s ease both;
+}
+.btn-primary{
+  background:var(--gold);color:var(--green-deep);
+  padding:0.85rem 2rem;border-radius:2rem;
+  font-size:0.95rem;font-weight:500;text-decoration:none;
+  transition:background 0.2s,transform 0.15s;display:inline-flex;align-items:center;gap:0.5rem;
+}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline{
+  border:1px solid rgba(200,160,96,0.4);color:rgba(255,255,255,0.8);
+  padding:0.85rem 2rem;border-radius:2rem;
+  font-size:0.95rem;font-weight:400;text-decoration:none;
+  transition:border-color 0.2s,color 0.2s,transform 0.15s;
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.hero-stats{
+  position:absolute;right:5%;bottom:3rem;
+  display:flex;gap:3rem;
+  animation:fadeUp 0.9s 0.4s ease both;
+}
+.stat{text-align:center}
+.stat-num{
+  font-family:var(--font-display);font-size:2.8rem;
+  font-weight:600;color:var(--white);line-height:1;
+}
+.stat-num span{color:var(--gold)}
+.stat-label{
+  color:rgba(255,255,255,0.45);font-size:0.75rem;
+  letter-spacing:0.08em;text-transform:uppercase;margin-top:0.25rem;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero-scroll{
+  position:absolute;left:5%;bottom:2.5rem;
+  color:rgba(255,255,255,0.3);font-size:0.75rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.hero-scroll::after{
+  content:'';display:block;width:48px;height:1px;
+  background:rgba(255,255,255,0.2);
+}
+
+/* ── SECTION COMMONS ── */
+section{padding:6rem 5%}
+.section-tag{
+  display:inline-block;
+  color:var(--gold);font-size:0.78rem;letter-spacing:0.14em;
+  text-transform:uppercase;font-weight:500;margin-bottom:1rem;
+}
+.section-title{
+  font-family:var(--font-display);
+  font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:600;line-height:1.15;color:var(--green-deep);
+}
+.section-title em{color:var(--gold);font-style:italic;font-weight:400}
+.section-sub{
+  color:var(--text-mid);font-size:1rem;font-weight:300;
+  line-height:1.75;max-width:520px;margin-top:1rem;
+}
+
+/* ── TICKER BAND ── */
+.ticker-band{
+  background:var(--green-deep);
+  padding:0.85rem 0;overflow:hidden;
+  border-top:1px solid rgba(200,160,96,0.2);
+  border-bottom:1px solid rgba(200,160,96,0.2);
+}
+.ticker-track{
+  display:flex;gap:0;
+  animation:ticker 30s linear infinite;
+  white-space:nowrap;
+}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{
+  color:rgba(200,160,96,0.7);font-size:0.8rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:0 2.5rem;display:inline-flex;align-items:center;gap:0.75rem;
+}
+.ticker-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+/* ── SERVICES ── */
+#services{background:var(--cream)}
+.services-header{margin-bottom:3.5rem}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1.5rem;
+}
+.service-card{
+  background:var(--white);
+  border:1px solid rgba(14,31,18,0.07);
+  border-radius:1.5rem;padding:2rem 1.75rem;
+  transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;
+  cursor:default;position:relative;overflow:hidden;
+}
+.service-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.service-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(14,31,18,0.1);
+  border-color:rgba(200,160,96,0.3);
+}
+.service-card:hover::before{opacity:1}
+.service-icon{
+  width:52px;height:52px;border-radius:50%;
+  background:var(--blush);display:flex;align-items:center;
+  justify-content:center;font-size:1.6rem;
+  margin-bottom:1.25rem;
+  transition:background 0.3s;
+}
+.service-card:hover .service-icon{background:rgba(200,160,96,0.15)}
+.service-name{
+  font-family:var(--font-display);font-size:1.25rem;
+  font-weight:600;color:var(--green-deep);margin-bottom:0.5rem;
+}
+.service-desc{
+  color:var(--text-light);font-size:0.88rem;
+  line-height:1.65;font-weight:300;
+}
+.service-tag{
+  display:inline-block;margin-top:1rem;
+  background:rgba(200,160,96,0.1);color:var(--gold);
+  font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;
+  padding:0.3rem 0.8rem;border-radius:1rem;font-weight:500;
+}
+
+/* ── ABOUT ── */
+#about{
+  background:var(--green-deep);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;
+}
+#about .section-title{color:var(--white)}
+#about .section-sub{color:rgba(255,255,255,0.55)}
+.about-facts{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.5rem;margin-top:2.5rem;
+}
+.fact-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(200,160,96,0.15);
+  border-radius:1rem;padding:1.5rem;
+}
+.fact-num{
+  font-family:var(--font-display);font-size:2.2rem;
+  font-weight:600;color:var(--gold);line-height:1;
+}
+.fact-label{
+  color:rgba(255,255,255,0.5);font-size:0.78rem;
+  letter-spacing:0.06em;text-transform:uppercase;margin-top:0.4rem;
+}
+.about-visual{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1rem;
+}
+.about-img{
+  border-radius:1.25rem;overflow:hidden;
+  aspect-ratio:1;
+  background:var(--green-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-size:4rem;
+}
+.about-img:first-child{
+  grid-column:1/-1;aspect-ratio:2/1;
+  background:linear-gradient(135deg,#1a3320,#2d5438);
+}
+.about-img-caption{
+  text-align:center;padding:1rem;
+  font-family:var(--font-display);font-size:1.1rem;
+  color:rgba(200,160,96,0.6);
+}
+
+/* ── REVIEWS ── */
+#reviews{background:var(--blush)}
+.reviews-header{margin-bottom:3.5rem;text-align:center}
+.reviews-header .section-sub{margin:1rem auto 0}
+.reviews-rating{
+  display:flex;align-items:center;justify-content:center;gap:0.5rem;
+  margin:1.5rem 0;
+}
+.reviews-score{
+  font-family:var(--font-display);font-size:5rem;
+  font-weight:600;color:var(--green-deep);line-height:1;
+}
+.reviews-stars-stack{display:flex;flex-direction:column;gap:0.25rem}
+.stars-row{display:flex;gap:3px}
+.reviews-count{color:var(--text-light);font-size:0.85rem;margin-top:0.25rem}
+.reviews-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:1.5rem;
+}
+.review-card{
+  background:var(--white);border-radius:1.5rem;
+  padding:2rem;border:1px solid rgba(14,31,18,0.06);
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.review-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(14,31,18,0.08)}
+.review-stars{display:flex;gap:3px;margin-bottom:1rem}
+.review-stars .star{color:var(--gold);font-size:1rem}
+.review-text{
+  font-family:var(--font-display);font-size:1.05rem;
+  color:var(--green-deep);line-height:1.65;
+  font-style:italic;margin-bottom:1.25rem;
+}
+.reviewer{display:flex;align-items:center;gap:0.75rem}
+.reviewer-avatar{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--green-deep);display:flex;align-items:center;
+  justify-content:center;font-family:var(--font-display);
+  font-size:0.9rem;font-weight:600;color:var(--gold);
+}
+.reviewer-name{font-weight:500;font-size:0.9rem;color:var(--green-deep)}
+.reviewer-via{font-size:0.78rem;color:var(--text-light)}
+
+/* ── ORDER ── */
+#order{
+  background:linear-gradient(135deg,var(--green-deep) 0%,#1e3a24 100%);
+  text-align:center;padding:7rem 5%;
+}
+#order .section-title{color:var(--white)}
+#order .section-sub{color:rgba(255,255,255,0.5);margin:1rem auto 3rem;text-align:center}
+.order-methods{
+  display:flex;flex-wrap:wrap;gap:1.5rem;
+  justify-content:center;margin-bottom:3rem;
+}
+.order-card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(200,160,96,0.2);
+  border-radius:1.5rem;padding:2rem 2.5rem;
+  text-align:center;min-width:200px;
+  transition:background 0.3s,border-color 0.3s,transform 0.3s;
+  text-decoration:none;
+}
+.order-card:hover{
+  background:rgba(200,160,96,0.1);
+  border-color:var(--gold);transform:translateY(-4px);
+}
+.order-card-icon{font-size:2.5rem;margin-bottom:0.75rem}
+.order-card-name{
+  color:var(--white);font-weight:500;font-size:1rem;margin-bottom:0.25rem;
+}
+.order-card-note{color:rgba(255,255,255,0.4);font-size:0.8rem}
+.address-block{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(200,160,96,0.12);
+  border-radius:1rem;display:inline-block;
+  padding:1.5rem 2.5rem;margin-top:2rem;
+  color:rgba(255,255,255,0.5);font-size:0.88rem;line-height:1.8;
+}
+.address-block strong{color:rgba(255,255,255,0.8);display:block;margin-bottom:0.4rem}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--green-deep);
+  border-top:1px solid rgba(200,160,96,0.1);
+  padding:2rem 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+}
+.footer-logo{
+  font-family:var(--font-display);font-size:1.15rem;
+  font-weight:600;color:rgba(255,255,255,0.7);
+}
+.footer-logo span{color:var(--gold)}
+.footer-note{color:rgba(255,255,255,0.3);font-size:0.78rem}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{
+  color:rgba(255,255,255,0.35);font-size:0.8rem;
+  text-decoration:none;transition:color 0.2s;
+}
+.footer-links a:hover{color:var(--gold)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  #about{grid-template-columns:1fr;padding:5rem 5%}
+  .hero-stats{display:none}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .hero-title{font-size:2.8rem}
+  .about-visual{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Pushp<span>milan</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#order">Order</a></li>
+  </ul>
+  <a href="https://wa.me/918600146402" class="nav-cta" target="_blank">Order Now →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-petals" id="petals"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="star">★★★★★</span>
+      5.0 · 31 Google Reviews · Nashik's Finest
+    </div>
+    <h1 class="hero-title">
+      Where Every Petal<br/>
+      <em>Tells a Story.</em>
+    </h1>
+    <p class="hero-sub">
+      Premium flower bouquets, exotic arrangements &amp; same-day delivery across Nashik. Crafted with love, delivered with care.
+    </p>
+    <div class="hero-btns">
+      <a href="https://wa.me/918600146402" class="btn-primary" target="_blank">
+        🌸 Order on WhatsApp
+      </a>
+      <a href="#services" class="btn-outline">Explore Our Flowers</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">5.0<span>★</span></div>
+      <div class="stat-label">Google Rating</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">31<span>+</span></div>
+      <div class="stat-label">Happy Reviews</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10<span>+</span></div>
+      <div class="stat-label">Flower Varieties</div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll to explore</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-band">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <span class="section-tag">Our Specialities</span>
+    <h2 class="section-title">Every Bloom,<br/><em>Perfectly Curated</em></h2>
+    <p class="section-sub">From romantic roses to exotic orchids — we arrange the finest flowers for every moment that matters.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🌸</div>
+      <div class="service-name">Orchid Bouquets</div>
+      <p class="service-desc">Rare &amp; exotic orchid arrangements that make a lasting impression. Perfect for gifting someone truly special.</p>
+      <span class="service-tag">Premium</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌷</div>
+      <div class="service-name">Lily Bouquets</div>
+      <p class="service-desc">Elegant, fragrant lilies arranged with finesse. A timeless choice for celebrations and condolences alike.</p>
+      <span class="service-tag">Popular</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌹</div>
+      <div class="service-name">Rose Bouquets</div>
+      <p class="service-desc">Classic red, pink, and mixed rose bouquets — the language of love, arranged to perfection every time.</p>
+      <span class="service-tag">Bestseller</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✈️</div>
+      <div class="service-name">Imported Flower Bouquets</div>
+      <p class="service-desc">Rare international blooms sourced fresh — for moments that deserve something extraordinary and unique.</p>
+      <span class="service-tag">Exclusive</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🍫</div>
+      <div class="service-name">Chocolate Bouquets</div>
+      <p class="service-desc">The perfect blend of flowers and chocolates — a delightful surprise for birthdays, anniversaries, and more.</p>
+      <span class="service-tag">Gift Special</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎁</div>
+      <div class="service-name">Exclusive Flower Hampers</div>
+      <p class="service-desc">Luxuriously curated hampers with a mix of blooms, dry fruits, and premium gifts for grand occasions.</p>
+      <span class="service-tag">Luxury</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌻</div>
+      <div class="service-name">Sunflower Bouquets</div>
+      <p class="service-desc">Bright, cheerful sunflowers that radiate warmth and joy — ideal for spreading happiness and good vibes.</p>
+      <span class="service-tag">Joyful</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💍</div>
+      <div class="service-name">Engagement Bouquets</div>
+      <p class="service-desc">Mark life's most beautiful milestone with a breathtaking custom arrangement designed for the proposal moment.</p>
+      <span class="service-tag">Special Day</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💝</div>
+      <div class="service-name">Valentine's Day Bouquets</div>
+      <p class="service-desc">Romantic, passionate, and unforgettable — our Valentine specials speak louder than words ever could.</p>
+      <span class="service-tag">Romantic</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🐻</div>
+      <div class="service-name">Teddy Bouquets</div>
+      <p class="service-desc">Adorable flower-and-teddy combos that are a hit for birthdays, friendships, and surprise deliveries.</p>
+      <span class="service-tag">Cute Gift</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-content">
+    <span class="section-tag">Our Story</span>
+    <h2 class="section-title">Nashik's Most Loved<br/><em>Floral Boutique</em></h2>
+    <p class="section-sub">Pushpmilan Flowers has been crafting beautiful memories for families across Nashik. Every bouquet is arranged by hand with fresh, handpicked flowers — ensuring you get nothing but the best.</p>
+    <div class="about-facts">
+      <div class="fact-card">
+        <div class="fact-num">5.0</div>
+        <div class="fact-label">Google Rating</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-num">31+</div>
+        <div class="fact-label">Happy Customers</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-num">10+</div>
+        <div class="fact-label">Flower Varieties</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-num">Same</div>
+        <div class="fact-label">Day Delivery</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-visual">
+    <div class="about-img">
+      <div style="text-align:center">
+        <div style="font-size:5rem">🌸</div>
+        <div class="about-img-caption">Fresh Flowers, Daily</div>
+      </div>
+    </div>
+    <div class="about-img">
+      <div style="text-align:center">
+        <div style="font-size:3rem">🌹</div>
+        <div class="about-img-caption">Handcrafted</div>
+      </div>
+    </div>
+    <div class="about-img">
+      <div style="text-align:center">
+        <div style="font-size:3rem">🚚</div>
+        <div class="about-img-caption">Fast Delivery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-header">
+    <span class="section-tag">What People Say</span>
+    <h2 class="section-title">Every Review, <em>A Smile Delivered</em></h2>
+    <div class="reviews-rating">
+      <div class="reviews-score">5.0</div>
+      <div class="reviews-stars-stack">
+        <div class="stars-row">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <div class="reviews-count">Based on 31 Google Reviews</div>
+      </div>
+    </div>
+    <p class="section-sub">Real people. Real moments. Real flowers.</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="review-text">"Fresh flowers, beautiful arrangements, and on-time service. Absolutely loved the bouquet — looked even better than the photo!"</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">RK</div>
+        <div>
+          <div class="reviewer-name">Rahul K.</div>
+          <div class="reviewer-via">Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="review-text">"Every arrangement reflects creativity, freshness, and great attention to detail. My wife was thrilled with the engagement bouquet!"</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">AM</div>
+        <div>
+          <div class="reviewer-name">Amit M.</div>
+          <div class="reviewer-via">Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="review-text">"If you are looking for the best flower shop in Nashik, this is a must-visit place. Budget-friendly and beautiful!"</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">PS</div>
+        <div>
+          <div class="reviewer-name">Priya S.</div>
+          <div class="reviewer-via">Google Review</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER -->
+<section id="order">
+  <span class="section-tag">Place Your Order</span>
+  <h2 class="section-title">Order Fresh Flowers Today</h2>
+  <p class="section-sub">Multiple ways to reach us — pick what works best for you. Same-day delivery available across Nashik.</p>
+  <div class="order-methods">
+    <a href="https://wa.me/918600146402" target="_blank" class="order-card">
+      <div class="order-card-icon">💬</div>
+      <div class="order-card-name">WhatsApp</div>
+      <div class="order-card-note">+91 86001 46402</div>
+    </a>
+    <a href="tel:918600146402" class="order-card">
+      <div class="order-card-icon">📞</div>
+      <div class="order-card-name">Call Us</div>
+      <div class="order-card-note">+91 86001 46402</div>
+    </a>
+    <a href="https://www.swiggy.com/city/nashik/pushpmilan-flowers-nas-college-road-rest1321123" target="_blank" class="order-card">
+      <div class="order-card-icon">🛵</div>
+      <div class="order-card-name">Order on Swiggy</div>
+      <div class="order-card-note">Fast delivery</div>
+    </a>
+  </div>
+  <div class="address-block">
+    <strong>📍 Visit Our Shop</strong>
+    Shop No. A1, Silver Point, Sharanpur Road<br/>
+    Opposite Kulkarni Garden, Canada Corner<br/>
+    Nashik, Maharashtra — 422002<br/>
+    <br/>
+    🕘 Open Daily · Closes 10 PM
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Pushp<span>milan</span> Flowers</div>
+  <div class="footer-note">© 2025 Pushpmilan Flowers, Nashik. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="tel:918600146402">Call</a>
+    <a href="https://wa.me/918600146402" target="_blank">WhatsApp</a>
+    <a href="https://maps.google.com/?q=Pushpmilan+Flowers+Nashik" target="_blank">Directions</a>
+  </div>
+</footer>
+
+<script>
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled',window.scrollY>60);
+});
+
+const tickerItems=['Orchid Bouquets','Lily Bouquets','Rose Bouquets','Imported Flowers','Chocolate Bouquets','Flower Hampers','Sunflower Bouquets','Engagement Bouquets','Valentine Specials','Teddy Bouquets','Same-day Delivery','Nashik — 86001 46402'];
+const track=document.getElementById('ticker');
+const full=[...tickerItems,...tickerItems].map(t=>`<span class="ticker-item"><span class="ticker-dot"></span>${t}</span>`).join('');
+track.innerHTML=full+full;
+
+const petalsContainer=document.getElementById('petals');
+for(let i=0;i<22;i++){
+  const p=document.createElement('div');
+  p.className='petal';
+  p.style.cssText=`
+    left:${Math.random()*100}%;
+    width:${4+Math.random()*5}px;
+    height:${4+Math.random()*5}px;
+    opacity:0;
+    animation-duration:${8+Math.random()*10}s;
+    animation-delay:${Math.random()*12}s;
+    background:${Math.random()>0.5?'#c8a060':'#f7c9a8'};
+    border-radius:50% 0 50% 0;
+  `;
+  petalsContainer.appendChild(p);
+}
+
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.animation='fadeUp 0.7s ease both';
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.service-card,.review-card,.fact-card').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
